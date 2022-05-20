@@ -60,58 +60,32 @@ async function handleWebhookLiquidacionesGet(agent){
         let DNI=agent.parameters["DNI"];
         let Nombres=agent.parameters["Nombres"];
         const result = await new clienteController().getCliente(DNI);
-        console.log("El telefono tuyo es: ", result.datos[0].telefono)
-        //agent.add("El telefono con el dni y nombre ingresado es: "+ result.datos[0].telefono+" Y su dni es: "+ DNI)
+        if (!result == {}){
+          agent.add("El telefono tuyo es: " + result.datos[0].telefono)
+        }
+        else{
+          agent.add("No se ha encontrado un telefono con esta id")
+        }
+        //Agrega Menu
         const payload = {
             "richContent": [
               [
                 {
                   "event": {
                     "parameters": {},
-                    "languageCode": "es",
-                    "name": "Liquidacion"
-                  },
-                  "title": "Mi liquidación",
-                  "type": "list"
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "title": "Vacaciones",
-                  "type": "list",
-                  "event": {
-                    "name": "Vacaciones",
-                    "parameters": {},
-                    "languageCode": "es"
-                  }
-                },
-                {
-                  "title": "Beneficios",
-                  "event": {
-                    "parameters": {},
-                    "languageCode": "es",
-                    "name": "Beneficios"
-                  },
-                  "type": "list"
-                },
-                {
-                  "event": {
-                    "name": "Documentos",
-                    "parameters": {},
+                    "name": "Welcome",
                     "languageCode": "es"
                   },
                   "type": "list",
-                  "title": "Documentos"
+                  "title": "Volver al menu principal"
                 }
               ]
             ]
           }
-          
-         agent.add(new Payload(agent, JSON.stringify(payload)), { sendAsMessage:true, rawPayload:false })
-        return 
+          agent.add(new Payload(agent.UNSPECIFIED, payload, {rawPayload: true, sendAsMessage: true}));
+          return 
     } catch (error) {
-        agent.add("error perdon")
+        agent.add(error)
     }
 }
 

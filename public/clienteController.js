@@ -16,8 +16,8 @@ class ClienteController {
         );
       return { datos: respuesta };
     } catch (error) {
-
       console.log(error)
+      return {}
     }
   }
 }
