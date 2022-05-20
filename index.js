@@ -44,7 +44,6 @@ app.post('/webhook', express.json(), function (req, res) {
     // add intent map 2nd parameter pass function
     intentMap.set('liquidacionCrear',handleWebHookIntent)
     intentMap.set('liquidacionCrear',handleWebhookLiquidacionesGet)
-    intentMap.set('Default Welcome Intent',handleWebHookIntent)
 
     // now agent is handle request and pass intent map
     agent.handleRequest(intentMap)
@@ -69,7 +68,16 @@ async function handleWebhookLiquidacionesGet(agent){
         //Agrega Menu
         const payload = {
             "richContent": [
-              [
+              [                
+                {
+                "event": {
+                  "parameters": {},
+                  "name": "liquidacion",
+                  "languageCode": "es"
+                },
+                "type": "list",
+                "title": "Menu liquidacion"
+              },
                 {
                   "event": {
                     "parameters": {},
@@ -78,7 +86,7 @@ async function handleWebhookLiquidacionesGet(agent){
                   },
                   "type": "list",
                   "title": "Volver al menu principal"
-                }
+                },
               ]
             ]
           }

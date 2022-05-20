@@ -17,7 +17,7 @@ class ClienteController {
       return { datos: respuesta };
     } catch (error) {
       console.log(error)
-      return {}
+      return {datos: 'error en cliente'}
     }
   }
 }
