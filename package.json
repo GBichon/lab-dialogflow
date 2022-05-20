@@ -1,0 +1,25 @@
+{
+  "name": "dialogflow",
+  "version": "1.0.0",
+  "description": "Servidor chat bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chatBot"
+  ],
+  "author": "gbichon",
+  "license": "ISC",
+  "dependencies": {
+    "actions-on-google": "^3.0.0",
+    "dialogflow-fulfillment": "^0.6.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "glob": "^8.0.3",
+    "global": "^4.4.0",
+    "path": "^0.12.7",
+    "pg-promise": "^10.11.1"
+  }
+}
